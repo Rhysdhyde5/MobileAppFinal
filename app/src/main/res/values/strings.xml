@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Mobile3</string>
+    <string name="username">Username</string>
+    <string name="tttracker">TTTracker</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up</string>
+    <string name="add_major_tasks">Add Major Tasks</string>
+    <string name="enter_main_task_name">Enter Main Task Name</string>
+    <string name="enter_sub_task_1">Enter Sub Task 1</string>
+    <string name="enter_sub_task_2">Enter Sub Task 2</string>
+    <string name="enter_sub_task_3">Enter Sub Task 3</string>
+    <string name="enter_sub_task_4">Enter Sub Task 4</string>
+    <string name="add_task">Add Task</string>
+    <string name="enter_task_name">Enter Task Name</string>
+    <string name="enter_task_description">Enter Task Description</string>
+    <string name="time_duration">Time Duration</string>
+    <string name="add_tasks">Add Tasks</string>
+    <string name="tasks">Tasks</string>
+    <string name="new_task">New Task</string>
+    <string name="save">save</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="task_list">Task List</string>
+    <string name="time_completed_by">Time Completed by.</string>
+    <string name="description">description</string>
+    <string name="name">name</string>
+</resources>
