@@ -41,7 +41,7 @@ class UpdateTaskActivity : AppCompatActivity() {
             val newName = binding.nameUpdate.text.toString()
             val newDesc = binding.descUpdate.text.toString()
             val newTime = binding.addTimeUpdate.text.toString()
-            val updatedTask = TaskModel(taskId, newName, newDesc, newTime, singleTask.completed)
+            val updatedTask = TaskModel(taskId, newName, newDesc, newTime, singleTask.completed, singleTask.image)
             db.updateTask(updatedTask)
             finish()
             Toast.makeText(this, "Changes Saved", Toast.LENGTH_SHORT).show()

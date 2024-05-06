@@ -4,10 +4,14 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.graphics.Bitmap
+import android.util.Log
+import android.widget.ImageView
 import com.example.mobileappfinal.TaskModel
+import java.io.ByteArrayOutputStream
 
 
-private val DATABASE_VERSION = 5
+private val DATABASE_VERSION = 8
 private const val DATABASE_NAME = "task"
 private const val TABLE_TASKS = "tasks"
 private const val COLUMN_ID = "_id"
@@ -15,72 +19,72 @@ private const val COLUMN_TASK_TITLE = "taskname"
 private const val COLUMN_TASK_DESCRIPTION = "taskdesc"
 private const val COLUMN_TASK_TIME = "tasktime"
 private const val COLUMN_COMPLETED_TASK = "taskComplete"
+private const val COLUMN_TASK_IMAGE = "taskImage"
 
 
-//Class to manage database functions for our to-do list app, inherits from inbuilt DB
+
 class TaskDatabase(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
 
-    //Initialise database table
     override fun onCreate(db: SQLiteDatabase) {
         //here's some raw SQL
         val CREATE_TASKS_TABLE = "CREATE TABLE $TABLE_TASKS($COLUMN_ID INTEGER PRIMARY KEY," +
                 "$COLUMN_TASK_TITLE TEXT," +
                 "$COLUMN_TASK_DESCRIPTION TEXT," +
                 "$COLUMN_TASK_TIME TEXT," +
-                "$COLUMN_COMPLETED_TASK BOOLEAN)"
+                "$COLUMN_COMPLETED_TASK BOOLEAN," +
+                "$COLUMN_TASK_IMAGE BLOB)"
         db.execSQL(CREATE_TASKS_TABLE)
     }
 
-    //If we need to change the database schema
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_TASKS")
         onCreate(db)
     }
 
-    //Major function: read all tasks
     fun listTasks(): MutableList<TaskModel> {
-        //our SQL query
         val sql = "SELECT * FROM $TABLE_TASKS"
 
-        //local database
         val db = this.readableDatabase
 
         val storeTasks = arrayListOf<TaskModel>()
 
-        //remember we look through databases with a cursor to iterate
         val cursor = db.rawQuery(sql, null)
 
-        //go to the top, and if it's not null
         if (cursor.moveToFirst())
-            //get the (auto-generated) ID from the first column and text from the second
             do {
                 val id = (cursor.getInt(0))
                 val name = cursor.getString(1)
                 val desc = cursor.getString(2)
                 val time = cursor.getString(3)
                 val completed = cursor.getInt(4) == 1
+                val image = cursor.getBlob(5)
 
-                //put in arraylist
-                storeTasks.add(TaskModel(id, name, desc, time, completed))
-                    //keep running until we run out of results
+                storeTasks.add(TaskModel(id, name, desc, time, completed, image))
+
             } while (cursor.moveToNext())
 
-        //don't forget to release the cursor!
             cursor.close()
             db.close()
         return storeTasks
     }
 
     //Put a new task in the database
-    fun addTask(taskName: String, taskDescription: String, taskTime: String) {
+    fun addTask(taskName: String, taskDescription: String, taskTime: String, imageData: ByteArray?) {
         val db = this.writableDatabase
         val values = ContentValues().apply {
             put(COLUMN_TASK_TITLE, taskName)
             put(COLUMN_TASK_DESCRIPTION, taskDescription)
             put(COLUMN_TASK_TIME, taskTime)
             put(COLUMN_COMPLETED_TASK, false)
+            if(imageData == null ) {
+                Log.d("TAG", "addTask: ")
+                put(COLUMN_TASK_IMAGE, "null")
+            }
+            else{
+                put(COLUMN_TASK_IMAGE, imageData)
+            }
         }
 
         db.insert(TABLE_TASKS, null, values)
@@ -129,10 +133,11 @@ class TaskDatabase(context: Context) :
         val desc = cursor.getString(2)
         val time = cursor.getString(3)
         val completed = cursor.getInt(4) == 1
+        val image = cursor.getBlob(5)
 
         cursor.close()
         db.close()
-        return TaskModel(id, name, desc, time, completed)
+        return TaskModel(id, name, desc, time, completed, image)
     }
 
     fun getRowCount(): Int {

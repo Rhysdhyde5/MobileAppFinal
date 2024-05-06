@@ -78,6 +78,13 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageView
+        android:id="@+id/taskDisplayView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_image_search_24"
+        />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/closeButton"
         android:layout_width="match_parent"

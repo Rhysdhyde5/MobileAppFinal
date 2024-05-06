@@ -2,6 +2,7 @@ package com.example.mobileappfinal
 
 import android.content.ContentValues
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -33,11 +35,16 @@ class TaskDetailsActivity : AppCompatActivity() {
         val taskName = intent.getStringExtra("taskName")
         val taskDescription = intent.getStringExtra("taskDescription")
         val taskTime = intent.getStringExtra("taskTime")
+        val imageV = intent.getByteArrayExtra("blobExtra")
 
         // Populate UI with task details
         findViewById<TextView>(R.id.taskNameTextView).text = taskName
         findViewById<TextView>(R.id.taskDescriptionTextView).text = taskDescription
         findViewById<TextView>(R.id.taskTimeTextView).text = taskTime
+        if(imageV != null) {
+            val bitmap = BitmapFactory.decodeByteArray(imageV, 0, imageV.size)
+            findViewById<ImageView>(R.id.taskDisplayView).setImageBitmap(bitmap)
+        }
 
         findViewById<Button>(R.id.closeButton).setOnClickListener {
             finish()

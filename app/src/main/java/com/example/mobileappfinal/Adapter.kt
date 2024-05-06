@@ -72,6 +72,7 @@ class Adapter(private var dataList: MutableList<TaskModel>, private val db: Task
                 putExtra("taskName", singleTask.taskName)
                 putExtra("taskDescription", singleTask.taskDec)
                 putExtra("taskTime", singleTask.taskTime)
+                putExtra("blobExtra", singleTask.image)
             }
             context.startActivity(intent)
         }
