@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Participation">
+
+
+    <TextView
+        android:id="@+id/partTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/participationTitle"
+        android:textSize="30sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:paddingTop="20dp"
+        style="@style/TextAppearance.AppCompat.Title"/>
+
+    <ImageView
+        android:id="@+id/circleView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/circle_background"
+        android:scaleType="center"
+        android:adjustViewBounds="true" />
+
+
+    <TextView
+        android:id="@+id/participationL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/circleView"
+        android:layout_alignTop="@+id/circleView"
+        android:layout_alignEnd="@+id/circleView"
+        android:layout_alignBottom="@+id/circleView"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="95dp"
+        android:layout_marginBottom="69dp"
+        android:text="Participation"
+        android:textColor="@color/white"
+        android:textSize="70dp" />
+
+    <LinearLayout
+        android:id="@+id/redLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="142dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/red_baseline_square_24" />
+
+        <TextView
+            android:id="@+id/redText"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="7dp"
+            android:text="@string/low_participation"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="108dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/baseline_square_24" />
+
+        <TextView
+            android:id="@+id/yellowText"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="7dp"
+            android:text="@string/medium_participation"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="74dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/green_baseline_square_24" />
+
+        <TextView
+            android:id="@+id/greenText"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="7dp"
+            android:text="@string/good_participation"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>
+

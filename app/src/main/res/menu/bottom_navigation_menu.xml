@@ -10,4 +10,9 @@
         android:enabled="true"
         android:icon="@drawable/baseline_add_circle_24"
         android:title="@string/new_task" />
+    <item
+        android:id="@+id/item_3"
+        android:enabled="true"
+        android:icon="@drawable/baseline_person_24"
+        android:title="@string/participation" />
 </menu>

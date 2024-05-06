@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -18,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-
 
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.FrameLayout, List())
@@ -38,6 +38,13 @@ class MainActivity : AppCompatActivity() {
                 R.id.item_2 -> {
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.FrameLayout, new_task())
+                        commit()
+                    }
+                    true
+                }
+                R.id.item_3 -> {
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.FrameLayout, Participation())
                         commit()
                     }
                     true

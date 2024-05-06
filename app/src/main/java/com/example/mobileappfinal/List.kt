@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileappfinal.databinding.ActivityMainBinding
 import com.example.mobileappfinal.databinding.FragmentListBinding
 
 
@@ -15,26 +13,37 @@ class List : Fragment() {
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
+    private lateinit var taskdb: TaskDatabase
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
+    private lateinit var taskAdapter: Adapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentListBinding.inflate(inflater,container,false)
+        _binding = FragmentListBinding.inflate(inflater, container, false)
+        taskdb = TaskDatabase(requireContext())
 
-        val db = TaskDatabase(requireContext())
-        val taskList = db.listTasks()
-        val taskAdapter = Adapter(taskList, db)
+        val taskList = taskdb.listTasks()
+        taskAdapter = Adapter(taskList, taskdb) // Initialize taskAdapter
         val taskView = binding.taskList
         val manager = LinearLayoutManager(requireContext())
         taskView.layoutManager = manager
         taskView.adapter = taskAdapter
+        taskAdapter.refreshData(taskList)
         return binding.root
+
     }
+
+    override fun onResume() {
+        super.onResume()
+        // Refresh task data when the fragment resumes
+        val taskList = taskdb.listTasks()
+        taskAdapter.refreshData(taskList)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        }
 }

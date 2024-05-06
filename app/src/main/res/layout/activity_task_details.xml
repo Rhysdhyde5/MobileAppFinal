@@ -5,16 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".NewTaskSheet">
+    tools:context=".new_task">
 
 
     <TextView
-        android:id="@+id/taskTitle"
+        android:id="@+id/taskTitleDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/new_task"
+        android:text = "@string/task_details"
         android:textSize="30sp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         style="@style/TextAppearance.AppCompat.Title"/>
 
@@ -29,8 +29,12 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/name"
-            android:hint="@string/name"/>
+            android:id="@+id/taskNameTextView"
+            android:hint="@string/name"
+            android:inputType="none"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
+
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,8 +48,11 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/desc"
-            android:hint="@string/description">
+            android:id="@+id/taskDescriptionTextView"
+            android:hint="@string/description"
+            android:inputType="none"
+            android:focusable="false"
+            android:focusableInTouchMode="false">
 
         </com.google.android.material.textfield.TextInputEditText>
 
@@ -61,36 +68,22 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/addTime"
-            android:hint="@string/time_completed_by">
+            android:id="@+id/taskTimeTextView"
+            android:hint="@string/time_completed_by"
+            android:inputType="none"
+            android:focusable="false"
+            android:focusableInTouchMode="false">
 
         </com.google.android.material.textfield.TextInputEditText>
-
-        <ImageView
-            android:id="@+id/imageViewSelectedImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:visibility="gone" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/imageButton"
+        android:id="@+id/closeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginHorizontal="20dp"
-        android:text="@string/select_image"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/saveButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="20dp"
-        android:text="@string/save"/>
+        android:text="@string/close" />
 
 </LinearLayout>
